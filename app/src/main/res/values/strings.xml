@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TestIdeaPlatform</string>
+    <string name="edit_icon_content_description">Редактирование</string>
+    <string name="delete_icon_content_description">Удаление</string>
 </resources>
