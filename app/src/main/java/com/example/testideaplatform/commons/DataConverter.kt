@@ -9,8 +9,8 @@ object DataConverter {
 
     private const val MILLISECONDS_PER_SECOND = 1000
 
-    fun timestampToStringDate(timestamp: Long): String {
-        val date = Date(timestamp * MILLISECONDS_PER_SECOND)
+    fun timestampToStringDate(timestamp: Int): String {
+        val date = Date(timestamp.toLong() * MILLISECONDS_PER_SECOND)
         return SimpleDateFormat("dd.MM.yy", Locale.getDefault()).format(date)
     }
 

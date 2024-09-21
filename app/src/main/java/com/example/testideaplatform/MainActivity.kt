@@ -5,12 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
+import com.example.testideaplatform.presentation.MainScreen
 import com.example.testideaplatform.ui.theme.TestIdeaPlatformTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,10 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             TestIdeaPlatformTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Text(
-                        modifier = Modifier.padding(innerPadding),
-                        text = "MainActivity"
-                    )
+                    MainScreen(paddingValues = innerPadding)
                 }
             }
         }

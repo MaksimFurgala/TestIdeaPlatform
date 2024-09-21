@@ -29,19 +29,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.testideaplatform.R
 import com.example.testideaplatform.commons.DataConverter
-import com.example.testideaplatform.domain.Item
+import com.example.testideaplatform.domain.entity.Item
 import com.example.testideaplatform.ui.theme.OrangeRed
 import com.example.testideaplatform.ui.theme.Purple
 import com.example.testideaplatform.ui.theme.TestIdeaPlatformTheme
 
 @Composable
 fun ItemCard(
+    modifier: Modifier = Modifier,
     item: Item,
-    modifier: Modifier,
+    onUpdateClickListener: (Item) -> Unit,
+    onDeleteClickListener: (Item) -> Unit
 ) {
     Card(
         modifier = modifier,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
+        elevation = CardDefaults.cardElevation(4.dp)
     ) {
         // region Шапка
         Row(
@@ -112,7 +115,7 @@ fun ActionIcon(
         modifier = modifier
             .padding(4.dp)
             .clickable {
-                onItemClickListener.invoke()
+                onItemClickListener()
             },
         tint = tint,
         imageVector = imageVector,
@@ -194,7 +197,13 @@ fun ItemCardPreviewLightTheme() {
                 tags = "[\"abc\", \"def\"]",
                 time = 12,
                 amount = 1
-            ), modifier = Modifier.padding(4.dp)
+            ), modifier = Modifier.padding(4.dp),
+            onUpdateClickListener = {
+
+            },
+            onDeleteClickListener = {
+
+            }
         )
     }
 }
@@ -210,7 +219,13 @@ fun ItemCardPreviewDarkTheme() {
                 tags = "[\"abc\", \"def\"]",
                 time = 12,
                 amount = 1
-            ), modifier = Modifier.padding(4.dp)
+            ), modifier = Modifier.padding(4.dp),
+            onUpdateClickListener = {
+
+            },
+            onDeleteClickListener = {
+
+            }
         )
     }
 }

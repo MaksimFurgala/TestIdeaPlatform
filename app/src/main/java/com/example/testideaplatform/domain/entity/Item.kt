@@ -1,4 +1,4 @@
-package com.example.testideaplatform.domain
+package com.example.testideaplatform.domain.entity
 
 /**
  * Модель для представления элемента в списке товаров.
@@ -11,9 +11,9 @@ package com.example.testideaplatform.domain
  * @constructor Create empty Item
  */
 data class Item(
-    val id: Long,
+    val id: Int,
     val name: String,
-    val time: Long,
+    val time: Int,
     val tags: String,
-    val amount: Long,
+    val amount: Int,
 )
