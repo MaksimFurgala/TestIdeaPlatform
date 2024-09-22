@@ -2,4 +2,6 @@
     <string name="app_name">TestIdeaPlatform</string>
     <string name="edit_icon_content_description">Редактирование</string>
     <string name="delete_icon_content_description">Удаление</string>
+    <string name="title_edit_dialog">Количество товара</string>
+    <string name="minus_icon_content_description">Уменьшить количество товара</string>
 </resources>

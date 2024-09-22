@@ -34,9 +34,19 @@ import com.example.testideaplatform.ui.theme.OrangeRed
 import com.example.testideaplatform.ui.theme.Purple
 import com.example.testideaplatform.ui.theme.TestIdeaPlatformTheme
 
+/**
+ * Карточка товара.
+ *
+ * @param modifier - modifier
+ * @param item - товар
+ * @param onUpdateClickListener - колбек обновления элемента
+ * @param onDeleteClickListener - колбек удаления элемента
+ * @receiver
+ * @receiver
+ */
 @Composable
 fun ItemCard(
-    modifier: Modifier = Modifier,
+    modifier: Modifier,
     item: Item,
     onUpdateClickListener: (Item) -> Unit,
     onDeleteClickListener: (Item) -> Unit
@@ -48,12 +58,12 @@ fun ItemCard(
     ) {
         // region Шапка
         Row(
-            modifier = modifier.padding(start = 4.dp, end = 4.dp),
+            modifier = modifier.padding(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = item.name, modifier = Modifier
-                    .padding(4.dp)
+                text = item.name,
+                modifier = Modifier
                     .weight(1f),
                 color = MaterialTheme.colorScheme.onPrimary,
                 fontWeight = FontWeight.Bold
@@ -65,7 +75,9 @@ fun ItemCard(
                 imageVector = Icons.Filled.Edit,
                 contentDescription = stringResource(R.string.edit_icon_content_description),
                 tint = Purple,
-                onItemClickListener = { /*TODO*/ })
+                onItemClickListener = {
+                    onUpdateClickListener(item)
+                })
 
             // Удаление.
             ActionIcon(
@@ -73,20 +85,22 @@ fun ItemCard(
                 imageVector = Icons.Filled.Delete,
                 contentDescription = stringResource(R.string.delete_icon_content_description),
                 tint = OrangeRed,
-                onItemClickListener = { /*TODO*/ })
+                onItemClickListener = {
+                    onDeleteClickListener(item)
+                })
         }
         // endregion
 
         // region Теги
         Tags(
-            modifier = Modifier,
+            modifier = Modifier.padding(horizontal = 8.dp),
             tags = DataConverter.getItemTagsFromString(item.tags)
         )
         // endregion
 
         // region Дополнительная информация
         AdditionalInfo(
-            modifier = modifier,
+            modifier = modifier.padding(start = 6.dp, end = 6.dp, bottom = 6.dp),
             item = item
         )
         // endregion
@@ -131,7 +145,6 @@ fun Tags(
 ) {
     FlowRow(
         modifier = modifier
-            .padding(start = 4.dp, end = 4.dp)
             .fillMaxWidth(1f)
             .wrapContentHeight(align = Alignment.Top),
         horizontalArrangement = Arrangement.Start
@@ -142,7 +155,12 @@ fun Tags(
                     .padding(horizontal = 4.dp)
                     .align(alignment = Alignment.CenterVertically),
                 onClick = { },
-                label = { Text(color = MaterialTheme.colorScheme.onPrimaryContainer, text = it) }
+                label = {
+                    Text(
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        text = it
+                    )
+                }
             )
         }
     }
@@ -165,18 +183,16 @@ fun AdditionalInfo(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier
-            .padding(start = 4.dp, end = 4.dp)
             .fillMaxWidth()
     ) {
         Column(modifier = modifier) {
-            Text(text = "На складе:", color = textColor, fontWeight = FontWeight.Bold)
+            Text(text = "На складе", color = textColor)
             Text(text = item.amount.toString(), color = textColor)
         }
         Column(modifier = modifier) {
             Text(
-                text = "Дата добавления:",
-                color = textColor,
-                fontWeight = FontWeight.Bold
+                text = "Дата добавления",
+                color = textColor
             )
             Text(
                 text = DataConverter.timestampToStringDate(item.time),

@@ -21,3 +21,6 @@ val MainBlack = Color(0xff34303d)
 
 // Цвет второстепенный (текст/рамки)
 val Gray_200 = Color(0xff72747d)
+
+// Цвет панелей
+val WhiteBlue = Color(0xffb1dcfc)
