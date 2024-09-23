@@ -8,7 +8,7 @@ data class ProductItemDataModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
-    val time: Int,
+    val time: Long,
     val tags: String,
     val amount: Int,
 )

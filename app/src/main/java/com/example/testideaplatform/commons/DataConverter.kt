@@ -1,7 +1,13 @@
 package com.example.testideaplatform.commons
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.google.gson.Gson
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 
@@ -12,16 +18,14 @@ import java.util.Locale
  */
 object DataConverter {
 
-    private const val MILLISECONDS_PER_SECOND = 1000
-
     /**
      * Конвертер из timestamp в строковый формат.
      *
      * @param timestamp - время в формате timestamp
      * @return - отформатированное время
      */
-    fun timestampToStringDate(timestamp: Int): String {
-        val date = Date(timestamp.toLong() * MILLISECONDS_PER_SECOND)
+    fun timestampToStringDate(timestamp: Long): String {
+        val date = Date(Timestamp(timestamp).time)
         return SimpleDateFormat("dd.MM.yy", Locale.getDefault()).format(date)
     }
 

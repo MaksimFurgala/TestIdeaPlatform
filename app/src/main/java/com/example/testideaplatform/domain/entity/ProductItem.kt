@@ -13,7 +13,7 @@ package com.example.testideaplatform.domain.entity
 data class ProductItem(
     val id: Int,
     val name: String,
-    val time: Int,
+    val time: Long,
     val tags: String,
     val amount: Int,
 )
