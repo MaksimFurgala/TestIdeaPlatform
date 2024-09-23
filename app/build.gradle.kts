@@ -1,3 +1,6 @@
+private val APP_FILE_NAME = "ip-test-task.apk"
+
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -9,6 +12,15 @@ plugins {
 android {
     namespace = "com.example.testideaplatform"
     compileSdk = 34
+
+    applicationVariants.all {
+        val variant = this
+        variant.outputs
+            .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
+            .forEach { output ->
+                output.outputFileName = APP_FILE_NAME
+            }
+    }
 
     defaultConfig {
         applicationId = "com.example.testideaplatform"
