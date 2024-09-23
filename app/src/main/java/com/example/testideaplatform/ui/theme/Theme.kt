@@ -18,7 +18,7 @@ private val DarkColorScheme = darkColorScheme(
     onPrimary = Color.White,
     onSecondary = Gray_200,
     onPrimaryContainer = Color.White,
-    surface = WhiteBlue
+    surface = MainBlack
 )
 
 private val LightColorScheme = lightColorScheme(

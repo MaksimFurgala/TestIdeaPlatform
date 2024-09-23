@@ -4,4 +4,13 @@
     <string name="delete_icon_content_description">Удаление</string>
     <string name="title_edit_dialog">Количество товара</string>
     <string name="minus_icon_content_description">Уменьшить количество товара</string>
+    <string name="search_text_field_placeholder">Поиск товаров</string>
+    <string name="clear_value_search_text_field">Очистить</string>
+    <string name="top_app_bar_title">Список товаров</string>
+    <string name="title_delete_dialog">Удаление товара</string>
+    <string name="content_delete_dialog">Вы действительно хотите удалить выбранный товар?</string>
+    <string name="dialog_confirm_button_label">Да</string>
+    <string name="dialog_dismiss_button_label">Нет</string>
+    <string name="dialog_confirm_button_label_deffault">Принять</string>
+    <string name="dialog_dismiss_button_label_default">Отмена</string>
 </resources>

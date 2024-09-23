@@ -1,4 +1,4 @@
-package com.example.testideaplatform.presentation
+package com.example.testideaplatform.presentation.main
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

@@ -1,4 +1,4 @@
-package com.example.testideaplatform.presentation
+package com.example.testideaplatform.presentation.dialogs
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -22,7 +22,6 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -52,11 +51,16 @@ fun CurrentDialog(
                 item = dialogState.currentItem,
                 title = "Удаление товара",
                 image = Icons.Filled.Warning,
-                iconTitleContentDescription = "Удаление товара",
+                iconTitleContentDescription = stringResource(R.string.title_delete_dialog),
                 content = {
-                    Text(text = "Вы действительно хотите удалить выбранный товар?")
+                    Text(text = stringResource(R.string.content_delete_dialog))
                 },
-                buttonLabels = arrayOf("Да", "Нет"),
+                buttonLabels = arrayOf(
+                    stringResource(R.string.dialog_confirm_button_label),
+                    stringResource(
+                        R.string.dialog_dismiss_button_label
+                    )
+                ),
                 onConfirmRequest = {
                     onConfirmRequest(it)
                 },
@@ -82,7 +86,7 @@ fun CurrentDialog(
                         Icon(
                             imageVector = MinusIcon,
                             contentDescription = stringResource(R.string.minus_icon_content_description),
-                            tint = MaterialTheme.colorScheme.onPrimary,//Color.White
+                            tint = MaterialTheme.colorScheme.onPrimary,
                             modifier = Modifier
                                 .border(
                                     width = 1.5.dp,
@@ -102,11 +106,11 @@ fun CurrentDialog(
                         Icon(
                             imageVector = Icons.Filled.Add,
                             contentDescription = "Plus",
-                            tint = Color.White,
+                            tint = MaterialTheme.colorScheme.onPrimary,
                             modifier = Modifier
                                 .border(
                                     width = 1.5.dp,
-                                    color = Color.White,
+                                    color = MaterialTheme.colorScheme.onPrimary,
                                     shape = CircleShape
                                 )
                                 .clickable {
@@ -132,14 +136,14 @@ fun CurrentDialog(
 /**
  * Диалоговое окно для тек. товара в списке.
  *
- * @param item
- * @param title
- * @param image
- * @param content
- * @param onConfirmRequest
- * @param onDismissRequest
- * @param iconTitleContentDescription
- * @param buttonLabels
+ * @param item - тек. товар
+ * @param title - заголовок
+ * @param image - иконка
+ * @param content - контент
+ * @param onConfirmRequest - колбек подтверждения
+ * @param onDismissRequest - колбек отмены
+ * @param iconTitleContentDescription - описание иконки
+ * @param buttonLabels - надписи для кнопок
  * @receiver
  * @receiver
  * @receiver
@@ -160,23 +164,30 @@ fun ItemDialog(
         icon = {
             Icon(
                 imageVector = image,
-                contentDescription = iconTitleContentDescription
+                contentDescription = iconTitleContentDescription,
+                tint = MaterialTheme.colorScheme.onPrimary
             )
         },
         title = {
-            Text(text = title)
+            Text(text = title, color = MaterialTheme.colorScheme.onPrimary)
         },
         text = content,
         confirmButton = {
             Button(onClick = {
                 onConfirmRequest(item)
             }) {
-                Text(text = buttonLabels.firstOrNull() ?: "Принять")
+                Text(
+                    text = buttonLabels.firstOrNull()
+                        ?: stringResource(R.string.dialog_confirm_button_label_deffault)
+                )
             }
         },
         dismissButton = {
             Button(onClick = onDismissRequest) {
-                Text(text = buttonLabels.lastOrNull() ?: "Отмена")
+                Text(
+                    text = buttonLabels.lastOrNull()
+                        ?: stringResource(R.string.dialog_dismiss_button_label_default)
+                )
             }
         }
     )

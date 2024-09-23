@@ -1,4 +1,4 @@
-package com.example.testideaplatform.presentation
+package com.example.testideaplatform.presentation.dialogs
 
 import com.example.testideaplatform.domain.entity.Item
 
@@ -8,7 +8,6 @@ import com.example.testideaplatform.domain.entity.Item
  * @constructor Create empty Dialog state
  */
 sealed class DialogState {
-    open val buttonLabels: Array<String> = emptyArray()
 
     object Initial : DialogState()
 
@@ -20,12 +19,10 @@ sealed class DialogState {
      * @constructor Create empty Edit
      */
     data class Edit(
-        val currentItem: Item,
-        override val buttonLabels: Array<String> = arrayOf("Принять", "Отмена")
+        val currentItem: Item
     ) : DialogState()
 
     data class Delete(
-        val currentItem: Item,
-        override val buttonLabels: Array<String> = arrayOf("Да", "Нет")
+        val currentItem: Item
     ) : DialogState()
 }

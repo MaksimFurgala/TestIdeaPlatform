@@ -15,9 +15,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import com.example.testideaplatform.presentation.MainScreen
-import com.example.testideaplatform.ui.theme.Black
+import com.example.testideaplatform.presentation.main.MainScreen
 import com.example.testideaplatform.ui.theme.TestIdeaPlatformTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,9 +40,9 @@ class MainActivity : ComponentActivity() {
                             title = {
                                 Text(
                                     modifier = Modifier.fillMaxWidth(),
-                                    text = "Список товаров",
+                                    text = stringResource(R.string.top_app_bar_title),
                                     textAlign = TextAlign.Center,
-                                    color = Black
+                                    color = MaterialTheme.colorScheme.onPrimary
                                 )
                             })
                     }
