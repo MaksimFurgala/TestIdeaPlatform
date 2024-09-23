@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.testideaplatform.R
 import com.example.testideaplatform.domain.entity.ProductItem
 import com.example.testideaplatform.ui.theme.MinusIcon
@@ -86,11 +87,11 @@ fun CurrentDialog(
                         Icon(
                             imageVector = MinusIcon,
                             contentDescription = stringResource(R.string.minus_icon_content_description),
-                            tint = MaterialTheme.colorScheme.onPrimary,
+                            tint = MaterialTheme.colorScheme.onTertiaryContainer,//MaterialTheme.colorScheme.onPrimary,
                             modifier = Modifier
                                 .border(
-                                    width = 1.5.dp,
-                                    color = MaterialTheme.colorScheme.onPrimary,
+                                    width = 2.dp,
+                                    color = MaterialTheme.colorScheme.onTertiaryContainer,//MaterialTheme.colorScheme.onPrimary,
                                     shape = CircleShape
                                 )
                                 .clickable {
@@ -101,16 +102,17 @@ fun CurrentDialog(
                         )
                         Text(
                             modifier = Modifier.padding(start = 24.dp, end = 24.dp),
-                            text = currentAmountItemState.toString()
+                            text = currentAmountItemState.toString(),
+                            fontSize = 20.sp
                         )
                         Icon(
                             imageVector = Icons.Filled.Add,
                             contentDescription = stringResource(R.string.add_icon_content_description),
-                            tint = MaterialTheme.colorScheme.onPrimary,
+                            tint = MaterialTheme.colorScheme.onTertiaryContainer,//MaterialTheme.colorScheme.onPrimary,
                             modifier = Modifier
                                 .border(
-                                    width = 1.5.dp,
-                                    color = MaterialTheme.colorScheme.onPrimary,
+                                    width = 2.dp,
+                                    color = MaterialTheme.colorScheme.onTertiaryContainer,//MaterialTheme.colorScheme.onPrimary,
                                     shape = CircleShape
                                 )
                                 .clickable {
@@ -178,7 +180,8 @@ fun ItemDialog(
             }) {
                 Text(
                     text = buttonLabels.firstOrNull()
-                        ?: stringResource(R.string.dialog_confirm_button_label_deffault)
+                        ?: stringResource(R.string.dialog_confirm_button_label_deffault),
+                    color = MaterialTheme.colorScheme.onTertiaryContainer
                 )
             }
         },
@@ -186,7 +189,8 @@ fun ItemDialog(
             Button(onClick = onDismissRequest) {
                 Text(
                     text = buttonLabels.lastOrNull()
-                        ?: stringResource(R.string.dialog_dismiss_button_label_default)
+                        ?: stringResource(R.string.dialog_dismiss_button_label_default),
+                    color = MaterialTheme.colorScheme.onTertiaryContainer
                 )
             }
         }
