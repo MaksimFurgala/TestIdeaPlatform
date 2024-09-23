@@ -4,13 +4,10 @@ import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.testideaplatform.data.model.ItemDataModel
-import java.io.File
+import com.example.testideaplatform.data.model.ProductItemDataModel
 
 @Database(
-    entities = [ItemDataModel::class],
+    entities = [ProductItemDataModel::class],
     version = 1,
     exportSchema = false
 )

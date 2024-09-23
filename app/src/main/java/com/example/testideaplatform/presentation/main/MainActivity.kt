@@ -1,4 +1,4 @@
-package com.example.testideaplatform
+package com.example.testideaplatform.presentation.main
 
 import android.os.Bundle
 import android.view.Window
@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import com.example.testideaplatform.presentation.main.MainScreen
+import com.example.testideaplatform.R
 import com.example.testideaplatform.ui.theme.TestIdeaPlatformTheme
 import dagger.hilt.android.AndroidEntryPoint
 

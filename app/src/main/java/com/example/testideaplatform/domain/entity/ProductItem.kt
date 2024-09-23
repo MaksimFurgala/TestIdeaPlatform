@@ -10,7 +10,7 @@ package com.example.testideaplatform.domain.entity
  * @property amount - количество
  * @constructor Create empty Item
  */
-data class Item(
+data class ProductItem(
     val id: Int,
     val name: String,
     val time: Int,

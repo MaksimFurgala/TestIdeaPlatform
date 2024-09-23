@@ -1,6 +1,6 @@
 package com.example.testideaplatform.presentation.dialogs
 
-import com.example.testideaplatform.domain.entity.Item
+import com.example.testideaplatform.domain.entity.ProductItem
 
 /**
  * State для диалогового окна.
@@ -14,15 +14,15 @@ sealed class DialogState {
     /**
      * Диалог редактирования.
      *
-     * @property currentItem - тек. элемент
+     * @property currentProductItem - тек. элемент
      * @property buttonLabels - надписи для кнопок
      * @constructor Create empty Edit
      */
     data class Edit(
-        val currentItem: Item
+        val currentProductItem: ProductItem
     ) : DialogState()
 
     data class Delete(
-        val currentItem: Item
+        val currentProductItem: ProductItem
     ) : DialogState()
 }

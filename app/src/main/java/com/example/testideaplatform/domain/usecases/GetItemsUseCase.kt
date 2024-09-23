@@ -1,6 +1,6 @@
 package com.example.testideaplatform.domain.usecases
 
-import com.example.testideaplatform.domain.entity.Item
+import com.example.testideaplatform.domain.entity.ProductItem
 import com.example.testideaplatform.domain.repository.AppRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 class GetItemsUseCase @Inject constructor(val repository: AppRepository) {
 
-    operator fun invoke(): Flow<List<Item>> {
+    operator fun invoke(): Flow<List<ProductItem>> {
         return repository.getItems()
     }
 }

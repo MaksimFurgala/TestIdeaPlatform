@@ -1,14 +1,12 @@
 package com.example.testideaplatform.presentation.main
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.testideaplatform.domain.entity.Item
+import com.example.testideaplatform.domain.entity.ProductItem
 import com.example.testideaplatform.domain.usecases.DeleteItemUseCase
 import com.example.testideaplatform.domain.usecases.GetItemsUseCase
 import com.example.testideaplatform.domain.usecases.UpdateItemUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -24,18 +22,18 @@ class MainViewModel @Inject constructor(
     private val itemsFlow = getItemsUseCase()
 
     val screenState = itemsFlow
-        .map { MainScreenState.Items(items = it) as MainScreenState }
+        .map { MainScreenState.Items(productItems = it) as MainScreenState }
         .onStart { emit(MainScreenState.Loading) }
 
-    fun updateItem(item: Item) {
+    fun updateItem(productItem: ProductItem) {
         viewModelScope.launch {
-            updateItemUseCase(item)
+            updateItemUseCase(productItem)
         }
     }
 
-    fun deleteItem(item: Item) {
+    fun deleteItem(productItem: ProductItem) {
         viewModelScope.launch {
-            deleteItemUseCase(item)
+            deleteItemUseCase(productItem)
         }
     }
 }

@@ -1,13 +1,13 @@
 package com.example.testideaplatform.domain.repository
 
-import com.example.testideaplatform.domain.entity.Item
+import com.example.testideaplatform.domain.entity.ProductItem
 import kotlinx.coroutines.flow.Flow
 
 interface AppRepository {
 
-    fun getItems(): Flow<List<Item>>
+    fun getItems(): Flow<List<ProductItem>>
 
-    suspend fun updateItem(item: Item)
+    suspend fun updateItem(productItem: ProductItem)
 
-    suspend fun deleteItem(item: Item)
+    suspend fun deleteItem(productItem: ProductItem)
 }

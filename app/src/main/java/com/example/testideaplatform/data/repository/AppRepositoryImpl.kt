@@ -2,7 +2,7 @@ package com.example.testideaplatform.data.repository
 
 import com.example.testideaplatform.data.db.AppDao
 import com.example.testideaplatform.data.mapper.DatabaseMapper
-import com.example.testideaplatform.domain.entity.Item
+import com.example.testideaplatform.domain.entity.ProductItem
 import com.example.testideaplatform.domain.repository.AppRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -34,24 +34,24 @@ class AppRepositoryImpl @Inject constructor(
      *
      * @return
      */
-    override fun getItems(): Flow<List<Item>> = _itemsFlow
+    override fun getItems(): Flow<List<ProductItem>> = _itemsFlow
 
     /**
      * Обновление товара.
      *
-     * @param item - товар
+     * @param productItem - товар
      */
-    override suspend fun updateItem(item: Item) {
-        appDao.updateItem(dbMapper.itemToItemDto(item))
+    override suspend fun updateItem(productItem: ProductItem) {
+        appDao.updateItem(dbMapper.productItemToProductItemDataModel(productItem))
     }
 
     /**
      * Удаление товара.
      *
-     * @param item - товар
+     * @param productItem - товар
      */
-    override suspend fun deleteItem(item: Item) {
-        appDao.deleteItem(dbMapper.itemToItemDto(item))
+    override suspend fun deleteItem(productItem: ProductItem) {
+        appDao.deleteItem(dbMapper.productItemToProductItemDataModel(productItem))
     }
 
 }

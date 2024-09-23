@@ -1,6 +1,6 @@
 package com.example.testideaplatform.presentation.main
 
-import com.example.testideaplatform.domain.entity.Item
+import com.example.testideaplatform.domain.entity.ProductItem
 
 /**
  * State для главного экрана приложения.
@@ -16,7 +16,7 @@ sealed class MainScreenState {
 
     // Данные загружены.
     data class Items(
-        val items: List<Item>,
+        val productItems: List<ProductItem>,
     ) :
         MainScreenState()
 }

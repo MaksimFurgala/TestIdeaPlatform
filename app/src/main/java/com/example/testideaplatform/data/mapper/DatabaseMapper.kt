@@ -1,18 +1,17 @@
 package com.example.testideaplatform.data.mapper
 
-import com.example.testideaplatform.data.model.ItemDataModel
-import com.example.testideaplatform.domain.entity.Item
+import com.example.testideaplatform.data.model.ProductItemDataModel
+import com.example.testideaplatform.domain.entity.ProductItem
 import org.mapstruct.IterableMapping
 import org.mapstruct.Mapper
 
 @Mapper
 interface DatabaseMapper {
-    fun itemToItemDto(item: Item): ItemDataModel
-    fun itemDtoToItem(itemDataModel: ItemDataModel): Item
 
-    @IterableMapping(elementTargetType = ItemDataModel::class)
-    fun itemsToItemsDataModel(items: List<Item>): List<ItemDataModel>
+    fun productItemToProductItemDataModel(productItem: ProductItem): ProductItemDataModel
 
-    @IterableMapping(elementTargetType = Item::class)
-    fun itemsDataModelToItems(itemsDataModel: List<ItemDataModel>): List<Item>
+    fun productItemDataModelToProductItem(productItemDataModel: ProductItemDataModel): ProductItem
+
+    @IterableMapping(elementTargetType = ProductItem::class)
+    fun itemsDataModelToItems(itemsDataModel: List<ProductItemDataModel>): List<ProductItem>
 }

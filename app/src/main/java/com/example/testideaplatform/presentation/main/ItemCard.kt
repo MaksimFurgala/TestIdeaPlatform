@@ -29,7 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.testideaplatform.R
 import com.example.testideaplatform.commons.DataConverter
-import com.example.testideaplatform.domain.entity.Item
+import com.example.testideaplatform.domain.entity.ProductItem
 import com.example.testideaplatform.ui.theme.OrangeRed
 import com.example.testideaplatform.ui.theme.Purple
 import com.example.testideaplatform.ui.theme.TestIdeaPlatformTheme
@@ -38,7 +38,7 @@ import com.example.testideaplatform.ui.theme.TestIdeaPlatformTheme
  * Карточка товара.
  *
  * @param modifier - modifier
- * @param item - товар
+ * @param productItem - товар
  * @param onUpdateClickListener - колбек обновления элемента
  * @param onDeleteClickListener - колбек удаления элемента
  * @receiver
@@ -47,9 +47,9 @@ import com.example.testideaplatform.ui.theme.TestIdeaPlatformTheme
 @Composable
 fun ItemCard(
     modifier: Modifier,
-    item: Item,
-    onUpdateClickListener: (Item) -> Unit,
-    onDeleteClickListener: (Item) -> Unit
+    productItem: ProductItem,
+    onUpdateClickListener: (ProductItem) -> Unit,
+    onDeleteClickListener: (ProductItem) -> Unit
 ) {
     Card(
         modifier = modifier,
@@ -62,7 +62,7 @@ fun ItemCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = item.name,
+                text = productItem.name,
                 modifier = Modifier
                     .weight(1f),
                 color = MaterialTheme.colorScheme.onPrimary,
@@ -76,7 +76,7 @@ fun ItemCard(
                 contentDescription = stringResource(R.string.edit_icon_content_description),
                 tint = Purple,
                 onItemClickListener = {
-                    onUpdateClickListener(item)
+                    onUpdateClickListener(productItem)
                 })
 
             // Удаление.
@@ -86,7 +86,7 @@ fun ItemCard(
                 contentDescription = stringResource(R.string.delete_icon_content_description),
                 tint = OrangeRed,
                 onItemClickListener = {
-                    onDeleteClickListener(item)
+                    onDeleteClickListener(productItem)
                 })
         }
         // endregion
@@ -94,14 +94,14 @@ fun ItemCard(
         // region Теги
         Tags(
             modifier = Modifier.padding(horizontal = 8.dp),
-            tags = DataConverter.getItemTagsFromString(item.tags)
+            tags = DataConverter.getItemTagsFromString(productItem.tags)
         )
         // endregion
 
         // region Дополнительная информация
         AdditionalInfo(
             modifier = modifier.padding(start = 6.dp, end = 6.dp, bottom = 6.dp),
-            item = item
+            productItem = productItem
         )
         // endregion
     }
@@ -170,13 +170,13 @@ fun Tags(
  * Дополнительная информация.
  *
  * @param modifier - modifier
- * @param item - элемент
+ * @param productItem - элемент
  * @param textColor - цвет текста
  */
 @Composable
 fun AdditionalInfo(
     modifier: Modifier,
-    item: Item,
+    productItem: ProductItem,
     textColor: Color = MaterialTheme.colorScheme.onPrimary
 ) {
     Row(
@@ -187,7 +187,7 @@ fun AdditionalInfo(
     ) {
         Column(modifier = modifier) {
             Text(text = "На складе", color = textColor)
-            Text(text = item.amount.toString(), color = textColor)
+            Text(text = productItem.amount.toString(), color = textColor)
         }
         Column(modifier = modifier) {
             Text(
@@ -195,7 +195,7 @@ fun AdditionalInfo(
                 color = textColor
             )
             Text(
-                text = DataConverter.timestampToStringDate(item.time),
+                text = DataConverter.timestampToStringDate(productItem.time),
                 color = textColor
             )
         }
@@ -207,7 +207,7 @@ fun AdditionalInfo(
 fun ItemCardPreviewLightTheme() {
     TestIdeaPlatformTheme(darkTheme = false, dynamicColor = false) {
         ItemCard(
-            item = Item(
+            productItem = ProductItem(
                 id = 1,
                 name = "Samsung Galaxy S21",
                 tags = "[\"abc\", \"def\"]",
@@ -229,7 +229,7 @@ fun ItemCardPreviewLightTheme() {
 fun ItemCardPreviewDarkTheme() {
     TestIdeaPlatformTheme(darkTheme = true, dynamicColor = false) {
         ItemCard(
-            item = Item(
+            productItem = ProductItem(
                 id = 1,
                 name = "Samsung Galaxy S21",
                 tags = "[\"abc\", \"def\"]",

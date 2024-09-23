@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.testideaplatform.R
-import com.example.testideaplatform.domain.entity.Item
+import com.example.testideaplatform.domain.entity.ProductItem
 import com.example.testideaplatform.ui.theme.MinusIcon
 
 
@@ -42,13 +42,13 @@ import com.example.testideaplatform.ui.theme.MinusIcon
 @Composable
 fun CurrentDialog(
     dialogState: DialogState,
-    onConfirmRequest: (Item) -> Item,
+    onConfirmRequest: (ProductItem) -> ProductItem,
     onDismissRequest: () -> Unit
 ) {
     when (dialogState) {
         is DialogState.Delete -> {
             ItemDialog(
-                item = dialogState.currentItem,
+                productItem = dialogState.currentProductItem,
                 title = "Удаление товара",
                 image = Icons.Filled.Warning,
                 iconTitleContentDescription = stringResource(R.string.title_delete_dialog),
@@ -70,11 +70,11 @@ fun CurrentDialog(
 
         is DialogState.Edit -> {
             var currentAmountItemState by remember {
-                mutableIntStateOf(dialogState.currentItem.amount)
+                mutableIntStateOf(dialogState.currentProductItem.amount)
             }
 
             ItemDialog(
-                item = dialogState.currentItem,
+                productItem = dialogState.currentProductItem,
                 title = stringResource(R.string.title_edit_dialog),
                 image = Icons.Filled.Settings,
                 iconTitleContentDescription = stringResource(R.string.title_edit_dialog),
@@ -136,7 +136,7 @@ fun CurrentDialog(
 /**
  * Диалоговое окно для тек. товара в списке.
  *
- * @param item - тек. товар
+ * @param productItem - тек. товар
  * @param title - заголовок
  * @param image - иконка
  * @param content - контент
@@ -150,11 +150,11 @@ fun CurrentDialog(
  */
 @Composable
 fun ItemDialog(
-    item: Item,
+    productItem: ProductItem,
     title: String,
     image: ImageVector,
     content: @Composable () -> Unit,
-    onConfirmRequest: (Item) -> Item,
+    onConfirmRequest: (ProductItem) -> ProductItem,
     onDismissRequest: () -> Unit,
     iconTitleContentDescription: String? = null,
     buttonLabels: Array<String> = emptyArray()
@@ -174,7 +174,7 @@ fun ItemDialog(
         text = content,
         confirmButton = {
             Button(onClick = {
-                onConfirmRequest(item)
+                onConfirmRequest(productItem)
             }) {
                 Text(
                     text = buttonLabels.firstOrNull()

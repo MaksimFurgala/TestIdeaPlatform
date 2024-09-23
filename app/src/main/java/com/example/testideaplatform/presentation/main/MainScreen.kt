@@ -34,7 +34,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.testideaplatform.R
-import com.example.testideaplatform.domain.entity.Item
+import com.example.testideaplatform.domain.entity.ProductItem
 import com.example.testideaplatform.presentation.dialogs.CurrentDialog
 import com.example.testideaplatform.presentation.dialogs.DialogState
 import com.example.testideaplatform.ui.theme.Purple40
@@ -54,7 +54,7 @@ fun MainScreen(paddingValues: PaddingValues) {
             ItemsCollection(
                 viewModel = viewModel,
                 paddingValues = paddingValues,
-                items = currentState.items
+                productItems = currentState.productItems
             )
         }
 
@@ -134,13 +134,13 @@ private fun SearchField(
  *
  * @param viewModel - viewModel
  * @param paddingValues - paddingValues
- * @param items - список товары
+ * @param productItems - список товары
  */
 @Composable
 private fun ItemsCollection(
     viewModel: MainViewModel,
     paddingValues: PaddingValues,
-    items: List<Item>
+    productItems: List<ProductItem>
 ) {
     // State для диалоговых окон.
     var dialogState: DialogState by remember {
@@ -198,7 +198,7 @@ private fun ItemsCollection(
         }
         items(
             // Отбираем элементы в список, с учетом того установлен ли фильтр в строке поиска.
-            items = items.filter {
+            items = productItems.filter {
                 searchTextState.isBlank() || it.name.contains(
                     searchTextState,
                     true
@@ -208,12 +208,12 @@ private fun ItemsCollection(
         ) { item ->
             ItemCard(
                 modifier = Modifier,
-                item = item,
+                productItem = item,
                 onUpdateClickListener = {
-                    dialogState = DialogState.Edit(currentItem = it)
+                    dialogState = DialogState.Edit(currentProductItem = it)
                 },
                 onDeleteClickListener = {
-                    dialogState = DialogState.Delete(currentItem = it)
+                    dialogState = DialogState.Delete(currentProductItem = it)
                 }
             )
         }
