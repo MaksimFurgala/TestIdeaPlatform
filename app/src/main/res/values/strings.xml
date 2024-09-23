@@ -13,4 +13,7 @@
     <string name="dialog_dismiss_button_label">Нет</string>
     <string name="dialog_confirm_button_label_deffault">Принять</string>
     <string name="dialog_dismiss_button_label_default">Отмена</string>
+    <string name="add_icon_content_description">Уменьшить количество товара</string>
+    <string name="amount_product_item_label">На складе</string>
+    <string name="add_product_item_date_label">Дата добавления</string>
 </resources>

@@ -43,7 +43,7 @@ import com.example.testideaplatform.ui.theme.MinusIcon
 fun CurrentDialog(
     dialogState: DialogState,
     onConfirmRequest: (ProductItem) -> Unit,
-    onDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit,
 ) {
     when (dialogState) {
         is DialogState.Delete -> {
@@ -105,7 +105,7 @@ fun CurrentDialog(
                         )
                         Icon(
                             imageVector = Icons.Filled.Add,
-                            contentDescription = "Plus",
+                            contentDescription = stringResource(R.string.add_icon_content_description),
                             tint = MaterialTheme.colorScheme.onPrimary,
                             modifier = Modifier
                                 .border(
@@ -157,7 +157,7 @@ fun ItemDialog(
     onConfirmRequest: (ProductItem) -> Unit,
     onDismissRequest: () -> Unit,
     iconTitleContentDescription: String? = null,
-    buttonLabels: Array<String> = emptyArray()
+    buttonLabels: Array<String> = emptyArray(),
 ) {
     AlertDialog(
         onDismissRequest = onDismissRequest,

@@ -91,7 +91,7 @@ fun MainScreen(paddingValues: PaddingValues) {
 private fun SearchField(
     value: String,
     onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     // Тек. фокус в приложении.
     val focusManager = LocalFocusManager.current
@@ -146,7 +146,7 @@ private fun ItemsCollection(
     onDeleteItem: (ProductItem) -> Unit,
     onEditItem: (ProductItem) -> Unit,
     paddingValues: PaddingValues,
-    productItems: List<ProductItem>
+    productItems: List<ProductItem>,
 ) {
     // State для диалоговых окон.
     var dialogState: DialogState by remember {
@@ -203,10 +203,7 @@ private fun ItemsCollection(
         items(
             // Отбираем элементы в список, с учетом того установлен ли фильтр в строке поиска.
             items = productItems.filter {
-                searchTextState.isBlank() || it.name.contains(
-                    searchTextState,
-                    true
-                )
+                searchTextState.isBlank() || it.name.contains(searchTextState, true)
             },
             key = { it.id }
         ) { item ->
@@ -223,5 +220,3 @@ private fun ItemsCollection(
         }
     }
 }
-
-

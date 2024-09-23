@@ -25,14 +25,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.testideaplatform.R
 import com.example.testideaplatform.commons.DataConverter
 import com.example.testideaplatform.domain.entity.ProductItem
 import com.example.testideaplatform.ui.theme.OrangeRed
 import com.example.testideaplatform.ui.theme.Purple
-import com.example.testideaplatform.ui.theme.TestIdeaPlatformTheme
 
 /**
  * Карточка товара.
@@ -49,7 +47,7 @@ fun ItemCard(
     modifier: Modifier,
     productItem: ProductItem,
     onUpdateClickListener: (ProductItem) -> Unit,
-    onDeleteClickListener: (ProductItem) -> Unit
+    onDeleteClickListener: (ProductItem) -> Unit,
 ) {
     Card(
         modifier = modifier,
@@ -141,7 +139,7 @@ fun ActionIcon(
 @Composable
 fun Tags(
     modifier: Modifier,
-    tags: List<String>
+    tags: List<String>,
 ) {
     FlowRow(
         modifier = modifier
@@ -177,7 +175,7 @@ fun Tags(
 fun AdditionalInfo(
     modifier: Modifier,
     productItem: ProductItem,
-    textColor: Color = MaterialTheme.colorScheme.onPrimary
+    textColor: Color = MaterialTheme.colorScheme.onPrimary,
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -186,12 +184,18 @@ fun AdditionalInfo(
             .fillMaxWidth()
     ) {
         Column(modifier = modifier) {
-            Text(text = "На складе", color = textColor)
-            Text(text = productItem.amount.toString(), color = textColor)
+            Text(
+                text = stringResource(R.string.amount_product_item_label),
+                color = textColor
+            )
+            Text(
+                text = productItem.amount.toString(),
+                color = textColor
+            )
         }
         Column(modifier = modifier) {
             Text(
-                text = "Дата добавления",
+                text = stringResource(R.string.add_product_item_date_label),
                 color = textColor
             )
             Text(
@@ -199,49 +203,5 @@ fun AdditionalInfo(
                 color = textColor
             )
         }
-    }
-}
-
-@Preview
-@Composable
-fun ItemCardPreviewLightTheme() {
-    TestIdeaPlatformTheme(darkTheme = false, dynamicColor = false) {
-        ItemCard(
-            productItem = ProductItem(
-                id = 1,
-                name = "Samsung Galaxy S21",
-                tags = "[\"abc\", \"def\"]",
-                time = 12,
-                amount = 1
-            ), modifier = Modifier.padding(4.dp),
-            onUpdateClickListener = {
-
-            },
-            onDeleteClickListener = {
-
-            }
-        )
-    }
-}
-
-@Preview
-@Composable
-fun ItemCardPreviewDarkTheme() {
-    TestIdeaPlatformTheme(darkTheme = true, dynamicColor = false) {
-        ItemCard(
-            productItem = ProductItem(
-                id = 1,
-                name = "Samsung Galaxy S21",
-                tags = "[\"abc\", \"def\"]",
-                time = 12,
-                amount = 1
-            ), modifier = Modifier.padding(4.dp),
-            onUpdateClickListener = {
-
-            },
-            onDeleteClickListener = {
-
-            }
-        )
     }
 }
