@@ -52,9 +52,14 @@ fun MainScreen(paddingValues: PaddingValues) {
     when (val currentState = screenState.value) {
         is MainScreenState.Items -> {
             ItemsCollection(
-                viewModel = viewModel,
                 paddingValues = paddingValues,
-                productItems = currentState.productItems
+                productItems = currentState.productItems,
+                onEditItem = {
+                    viewModel.updateItem(it)
+                },
+                onDeleteItem = {
+                    viewModel.deleteItem(it)
+                }
             )
         }
 
@@ -138,7 +143,8 @@ private fun SearchField(
  */
 @Composable
 private fun ItemsCollection(
-    viewModel: MainViewModel,
+    onDeleteItem: (ProductItem) -> Unit,
+    onEditItem: (ProductItem) -> Unit,
     paddingValues: PaddingValues,
     productItems: List<ProductItem>
 ) {
@@ -158,19 +164,17 @@ private fun ItemsCollection(
         onConfirmRequest = {
             when (dialogState) {
                 is DialogState.Delete -> {
-                    viewModel.deleteItem(it)
                     dialogState = DialogState.Initial
-                    it
+                    onDeleteItem(it)
                 }
 
                 is DialogState.Edit -> {
-                    viewModel.updateItem(it)
                     dialogState = DialogState.Initial
-                    it
+                    onEditItem(it)
                 }
 
                 DialogState.Initial -> {
-                    it
+
                 }
             }
         },

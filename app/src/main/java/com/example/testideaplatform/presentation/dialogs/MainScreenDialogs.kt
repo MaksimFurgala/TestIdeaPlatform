@@ -42,7 +42,7 @@ import com.example.testideaplatform.ui.theme.MinusIcon
 @Composable
 fun CurrentDialog(
     dialogState: DialogState,
-    onConfirmRequest: (ProductItem) -> ProductItem,
+    onConfirmRequest: (ProductItem) -> Unit,
     onDismissRequest: () -> Unit
 ) {
     when (dialogState) {
@@ -154,7 +154,7 @@ fun ItemDialog(
     title: String,
     image: ImageVector,
     content: @Composable () -> Unit,
-    onConfirmRequest: (ProductItem) -> ProductItem,
+    onConfirmRequest: (ProductItem) -> Unit,
     onDismissRequest: () -> Unit,
     iconTitleContentDescription: String? = null,
     buttonLabels: Array<String> = emptyArray()
